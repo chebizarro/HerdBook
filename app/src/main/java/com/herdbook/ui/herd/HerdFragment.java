@@ -4,10 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.herdbook.R;
+import com.herdbook.databinding.HerdFragmentBinding;
 import com.herdbook.ui.di.ActivityScoped;
 
 import javax.inject.Inject;
@@ -30,15 +33,15 @@ public class HerdFragment extends DaggerFragment implements HerdContract.View {
     HerdContract.Presenter mPresenter;
 
     @Inject
-    public HerdFragment() {
-        // Requires empty public constructor
-    }
+    public HerdFragment() { }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.herd_fragment, container, false);
+        @Nullable Bundle savedInstanceState) {
+        HerdFragmentBinding binding = DataBindingUtil.inflate(inflater, R.layout.herd_fragment, container, false);
+        View view = binding.getRoot();
+        return view;
     }
 
 }

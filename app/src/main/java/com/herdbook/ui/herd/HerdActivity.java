@@ -2,7 +2,10 @@ package com.herdbook.ui.herd;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.herdbook.R;
+import com.herdbook.databinding.HerdActivityBinding;
 import com.herdbook.util.ActivityUtils;
 
 import javax.inject.Inject;
@@ -16,15 +19,17 @@ public class HerdActivity extends DaggerAppCompatActivity {
     @Inject
     Lazy<HerdFragment> herdFragmentProvider;
 
+    private HerdActivityBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.herd_activity);
+        binding = HerdActivityBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        HerdFragment herdFragment =
-                (HerdFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
+        HerdFragment herdFragment = (HerdFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
 
         if (herdFragment == null) {
             herdFragment = herdFragmentProvider.get();
@@ -32,4 +37,5 @@ public class HerdActivity extends DaggerAppCompatActivity {
                     getSupportFragmentManager(), herdFragment, R.id.fragmentContainer);
         }
     }
+
 }
