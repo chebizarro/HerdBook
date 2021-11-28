@@ -1,5 +1,7 @@
 package com.herdbook.ui.di;
 
+import com.herdbook.ui.herd.HerdActivity;
+import com.herdbook.ui.herd.HerdModule;
 import com.herdbook.ui.main.MainActivity;
 import com.herdbook.ui.main.MainModule;
 
@@ -19,5 +21,9 @@ public abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = MainModule.class)
     abstract MainActivity mainActivity();
+
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = HerdModule.class)
+    abstract HerdActivity herdActivity();
 
 }

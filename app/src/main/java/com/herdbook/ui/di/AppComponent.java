@@ -2,6 +2,7 @@ package com.herdbook.ui.di;
 
 import android.app.Application;
 import com.herdbook.ui.HerdBookApplication;
+import com.herdbook.ui.herd.HerdModule;
 import com.herdbook.util.schedulers.SchedulerModule;
 
 import dagger.BindsInstance;
