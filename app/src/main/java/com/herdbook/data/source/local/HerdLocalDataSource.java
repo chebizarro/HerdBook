@@ -33,16 +33,16 @@ public class HerdLocalDataSource implements HerdDataSource {
 
     @Override
     public Flowable<List<Herd>> getHerds() {
-        return null;
+        return mHerdDao.getHerds();
     }
 
     @Override
     public Flowable<Optional<Herd>> getHerd(int herdId) {
-        return null;
+        return Flowable.just(Optional.of(mHerdDao.getHerd(herdId)));
     }
 
     @Override
     public void saveHerd(@androidx.annotation.NonNull Herd herd) {
-
+        mHerdDao.insert(herd);
     }
 }

@@ -22,12 +22,12 @@ public class HerdRemoteDataSource implements HerdDataSource {
 
     @Override
     public Flowable<List<Herd>> getHerds() {
-        return null;
+        return Flowable.empty();
     }
 
     @Override
     public Flowable<Optional<Herd>> getHerd(int herdId) {
-        return null;
+        return Flowable.empty();
     }
 
     @Override

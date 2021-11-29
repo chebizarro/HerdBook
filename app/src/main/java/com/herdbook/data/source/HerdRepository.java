@@ -119,7 +119,7 @@ public class HerdRepository implements HerdDataSource {
 
     private Herd getHerdWithID(int herdId) {
         if (mCachedHerds == null || mCachedHerds.isEmpty()) {
-            return  null;
+            return null;
         } else {
             return mCachedHerds.get(herdId);
         }
