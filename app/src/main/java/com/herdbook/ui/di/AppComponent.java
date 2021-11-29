@@ -1,8 +1,10 @@
 package com.herdbook.ui.di;
 
 import android.app.Application;
+
+import com.herdbook.data.source.HerdRepository;
+import com.herdbook.data.source.HerdRepositoryModule;
 import com.herdbook.ui.HerdBookApplication;
-import com.herdbook.ui.herd.HerdModule;
 import com.herdbook.util.schedulers.SchedulerModule;
 
 import dagger.BindsInstance;
@@ -25,10 +27,13 @@ import javax.inject.Singleton;
 @Singleton
 @Component(modules = {
         SchedulerModule.class,
+        HerdRepositoryModule.class,
         ApplicationModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
 public interface AppComponent extends AndroidInjector<HerdBookApplication> {
+
+    HerdRepository getHerdRepository();
 
     // Gives us syntactic sugar. we can then do DaggerAppComponent.builder().application(this).build().inject(this);
     // never having to instantiate any modules or say which module we are passing the application to.
