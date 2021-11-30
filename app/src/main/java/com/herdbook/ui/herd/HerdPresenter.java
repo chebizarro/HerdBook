@@ -8,8 +8,6 @@ import javax.inject.Inject;
 
 public class HerdPresenter implements HerdContract.Presenter {
 
-    private static final String TAG = HerdPresenter.class.getSimpleName();
-
     @Nullable
     private HerdContract.View mHerdView;
 
