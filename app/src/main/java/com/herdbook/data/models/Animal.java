@@ -32,6 +32,10 @@ public class Animal {
     @ColumnInfo(name = "name")
     private String mName;
 
+    @NonNull
+    @ColumnInfo(name = "herd")
+    private Herd mHerd;
+
     @ColumnInfo(name = "type")
     private Type mType;
 
@@ -41,8 +45,9 @@ public class Animal {
     @ColumnInfo(name = "sex")
     private Sex mSex;
 
-    public Animal(@NonNull String name, Type type) {
+    public Animal(@NonNull String name, @NonNull Herd herd, Type type) {
         this.mName = name;
+        this.mHerd = herd;
         this.mType = type;
     }
 
@@ -69,6 +74,15 @@ public class Animal {
 
     public void setType(Type mType) {
         this.mType = mType;
+    }
+
+    @NonNull
+    public Herd getmHerd() {
+        return mHerd;
+    }
+
+    public void setmHerd(@NonNull Herd mHerd) {
+        this.mHerd = mHerd;
     }
 
     public Date getDob() {

@@ -11,14 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HerdBook">
         <activity
+            android:name=".ui.herd.ScrollingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/Theme.HerdBook.NoActionBar" />
+        <activity
             android:name=".ui.gestation.GestationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.herd.HerdActivity"
             android:exported="true"
-            android:label="@string/herd_view">
+            android:label="@string/herd_view"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
