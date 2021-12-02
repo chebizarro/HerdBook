@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.herdbook">
+    package="com.herdbook" >
 
     <application
         android:name=".ui.HerdBookApplication"
@@ -9,7 +9,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HerdBook">
+        android:theme="@style/Theme.HerdBook" >
+        <activity
+            android:name=".ui.animal.AnimalActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.herd.ScrollingActivity"
             android:exported="false"
@@ -22,7 +25,7 @@
             android:name=".ui.herd.HerdActivity"
             android:exported="true"
             android:label="@string/herd_view"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

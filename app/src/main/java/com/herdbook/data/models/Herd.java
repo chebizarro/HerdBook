@@ -10,6 +10,7 @@ import io.reactivex.rxjava3.annotations.NonNull;
 public class Herd {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
 
     @NonNull

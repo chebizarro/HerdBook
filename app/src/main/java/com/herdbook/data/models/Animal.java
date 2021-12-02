@@ -26,6 +26,7 @@ public class Animal {
     }
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
 
     @NonNull
