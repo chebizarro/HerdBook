@@ -26,7 +26,7 @@ public class AnimalFragment extends DaggerFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.animal_fragment2, container, false);
+        return inflater.inflate(R.layout.animal_fragment, container, false);
     }
 
     @Override

@@ -13,6 +13,8 @@
         <entry key="app/src/main/res/layout-w936dp/content_herd.xml" value="0.11441256830601093" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_scrolling.xml" value="0.10648148148148148" />
+        <entry key="app/src/main/res/layout/animal_activity.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/animal_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_herd.xml" value="0.11347517730496454" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.15172101449275363" />
         <entry key="app/src/main/res/layout/content_scrolling.xml" value="0.1" />
