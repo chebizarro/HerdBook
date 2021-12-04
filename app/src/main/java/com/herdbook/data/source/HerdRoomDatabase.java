@@ -6,16 +6,19 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.herdbook.data.DAO.AnimalDao;
 import com.herdbook.data.DAO.HerdDao;
+import com.herdbook.data.models.Animal;
 import com.herdbook.data.models.Herd;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Herd.class}, version = 1, exportSchema = false)
+@Database(entities = {Herd.class, Animal.class}, version = 1, exportSchema = false)
 public abstract class HerdRoomDatabase extends RoomDatabase {
 
     public abstract HerdDao herdDao();
+    public abstract AnimalDao animalDao();
 
     private static volatile HerdRoomDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
