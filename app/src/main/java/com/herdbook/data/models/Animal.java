@@ -78,11 +78,11 @@ public class Animal {
     }
 
     @NonNull
-    public Herd getmHerd() {
+    public Herd getHerd() {
         return mHerd;
     }
 
-    public void setmHerd(@NonNull Herd mHerd) {
+    public void setHerd(@NonNull Herd mHerd) {
         this.mHerd = mHerd;
     }
 

@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverter;
+import androidx.room.TypeConverters;
 
 import com.herdbook.data.DAO.AnimalDao;
 import com.herdbook.data.DAO.HerdDao;
@@ -15,6 +17,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Herd.class, Animal.class}, version = 1, exportSchema = false)
+@TypeConverters({AnimalTypeConverter.class})
 public abstract class HerdRoomDatabase extends RoomDatabase {
 
     public abstract HerdDao herdDao();
