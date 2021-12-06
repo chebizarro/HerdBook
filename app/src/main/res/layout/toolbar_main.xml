@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/toolbar"
-	android:layout_width="match_parent"
-	android:layout_height="?attr/actionBarSize"
-	app:layout_collapseMode="pin"
-	app:popupTheme="@style/Theme.HerdBook.PopupOverlay" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+	</data>
+
+	<com.google.android.material.appbar.MaterialToolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		app:layout_collapseMode="pin"
+		app:navigationIcon="@drawable/ic_menu_24"
+		app:popupTheme="@style/Theme.HerdBook.PopupOverlay"
+		android:elevation="0dp" />
+</layout>
 

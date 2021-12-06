@@ -31,8 +31,8 @@ public class HerdActivity extends DaggerAppCompatActivity {
         binding = HerdActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Toolbar toolbar = binding.toolbar.getRoot();
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = binding.toolbar.getRoot();
+        //setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = binding.toolbarLayout;
         toolBarLayout.setTitle(getTitle());
 
