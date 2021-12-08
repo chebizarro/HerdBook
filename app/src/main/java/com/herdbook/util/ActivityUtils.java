@@ -18,6 +18,9 @@ package com.herdbook.util;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -40,6 +43,20 @@ public class ActivityUtils {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(frameId, fragment);
         transaction.commit();
+    }
+
+    /**
+     * Calculates the number of columns that can fit within the current screen based on
+     * the desiered column width.
+     * Based on https://stackoverflow.com/a/38472370/3029856
+     * @param context The current context
+     * @param columnWidthDp The desired width of the column
+     * @return the number of columns of {@code columnWidthDp} that fit
+     */
+    public static int calculateNoOfColumns(Context context, float columnWidthDp) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float screenWidthDp = displayMetrics.widthPixels / displayMetrics.density;
+        return (int) (screenWidthDp / columnWidthDp + 0.5);
     }
 
 }
