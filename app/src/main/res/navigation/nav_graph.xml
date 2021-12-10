@@ -12,15 +12,50 @@
             android:id="@+id/action_mainFragment_to_animalFragment"
             app:destination="@id/animalFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_placeholder2"
-            app:destination="@id/placeholder2" />
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_animalEditFragment"
+            app:destination="@id/animalEditFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_farmFragment"
+            app:destination="@id/farmFragment" />
     </fragment>
     <fragment
         android:id="@+id/animalFragment"
         android:name="com.herdbook.ui.animal.AnimalFragment"
         android:label="animal_fragment"
-        tools:layout="@layout/animal_fragment" />
+        tools:layout="@layout/animal_fragment" >
+        <action
+            android:id="@+id/action_animalFragment_to_animalEditFragment"
+            app:destination="@id/animalEditFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/placeholder2"
-        android:label="search" />
+        android:id="@+id/searchFragment"
+        android:name="com.herdbook.ui.search.SearchFragment"
+        android:label="search"
+        tools:layout="@layout/search_fragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_animalFragment"
+            app:destination="@id/animalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animalEditFragment"
+        android:name="com.herdbook.ui.animal.AnimalEditFragment"
+        android:label="animal_edit_fragment"
+        tools:layout="@layout/animal_edit_fragment" />
+    <fragment
+        android:id="@+id/farmFragment"
+        android:name="com.herdbook.ui.farm.FarmFragment"
+        android:label="farm_fragment"
+        tools:layout="@layout/farm_fragment" >
+        <action
+            android:id="@+id/action_farmFragment_to_farmEditFragment"
+            app:destination="@id/farmEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/farmEditFragment"
+        android:name="com.herdbook.ui.farm.FarmEditFragment"
+        android:label="fragment_farm_edit"
+        tools:layout="@layout/fragment_farm_edit" />
 </navigation>

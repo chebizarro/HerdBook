@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_scrolling.xml" value="0.10648148148148148" />
         <entry key="app/src/main/res/layout/animal_activity.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/animal_edit_fragment.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/animal_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/animal_name_list_group.xml" value="0.1398148148148148" />
         <entry key="app/src/main/res/layout/animal_name_list_item_group.xml" value="0.1398148148148148" />
@@ -38,6 +39,7 @@
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.2979942693409742" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/profile_picture.xml" value="0.17255434782608695" />
+        <entry key="app/src/main/res/layout/search_fragment.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/toolbar_main.xml" value="0.15172101449275363" />
         <entry key="app/src/main/res/menu/m_menu.xml" value="0.3194871794871795" />
         <entry key="app/src/main/res/menu/menu_scrolling.xml" value="0.2064814814814815" />
