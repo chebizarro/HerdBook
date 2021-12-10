@@ -10,6 +10,22 @@ import java.util.Date;
 @Entity(tableName="animal_table")
 public class Animal {
 
+    public Animal getSire() {
+        return mSire;
+    }
+
+    public void setSire(Animal mSire) {
+        this.mSire = mSire;
+    }
+
+    public Animal getDame() {
+        return mDame;
+    }
+
+    public void setDame(Animal mDame) {
+        this.mDame = mDame;
+    }
+
     public enum Type {
         CATTLE,
         GOAT,
@@ -43,8 +59,15 @@ public class Animal {
     @ColumnInfo(name = "dob")
     private Date mDob;
 
+    @NonNull
     @ColumnInfo(name = "sex")
     private Sex mSex;
+
+    @ColumnInfo(name = "sire")
+    private Animal mSire;
+
+    @ColumnInfo(name ="dame")
+    private Animal mDame;
 
     public Animal(@NonNull String name, @NonNull Herd herd, Type type) {
         this.mName = name;
@@ -94,11 +117,12 @@ public class Animal {
         this.mDob = mDob;
     }
 
+    @NonNull
     public Sex getSex() {
         return mSex;
     }
 
-    public void setSex(Sex mSex) {
+    public void setSex(@NonNull Sex mSex) {
         this.mSex = mSex;
     }
 

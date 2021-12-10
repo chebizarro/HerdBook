@@ -6,7 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import dagger.android.support.DaggerFragment;
+
+import dagger.android.support.DaggerDialogFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import android.view.ViewGroup;
 import com.herdbook.R;
 
 
-public class AnimalFragment extends DaggerFragment {
+public class AnimalFragment extends DaggerDialogFragment {
 
     private AnimalViewModel mViewModel;
 
