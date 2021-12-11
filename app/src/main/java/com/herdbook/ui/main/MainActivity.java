@@ -13,8 +13,6 @@ import com.herdbook.R;
 import com.herdbook.databinding.MainActivityBinding;
 import com.herdbook.util.ActivityUtils;
 
-import java.util.stream.Stream;
-
 import javax.inject.Inject;
 
 import dagger.Lazy;
@@ -28,7 +26,6 @@ public class MainActivity extends DaggerAppCompatActivity {
 
     private MainActivityBinding binding;
 
-    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +35,6 @@ public class MainActivity extends DaggerAppCompatActivity {
         binding = MainActivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        drawerLayout = binding.drawerLayout;
-
-        MaterialToolbar toolbar = (MaterialToolbar) binding.toolbar.getRoot();
-        setSupportActionBar(toolbar);
-
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_24);
-        actionbar.setDisplayHomeAsUpEnabled(true);
-
         MainFragment mainFragment =
                 (MainFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
 
@@ -55,26 +43,6 @@ public class MainActivity extends DaggerAppCompatActivity {
             ActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(), mainFragment, R.id.fragmentContainer);
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        switch(itemId) {
-            // Android home
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-            // manage other entries if you have it ...
-        }
-        return true;
     }
 
 
