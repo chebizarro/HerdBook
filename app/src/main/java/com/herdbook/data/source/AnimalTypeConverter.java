@@ -3,6 +3,7 @@ package com.herdbook.data.source;
 import androidx.room.TypeConverter;
 import java.util.Date;
 
+import com.herdbook.data.models.Animal;
 import com.herdbook.data.models.Herd;
 
 public class AnimalTypeConverter {
@@ -18,5 +19,11 @@ public class AnimalTypeConverter {
 
     @TypeConverter
     public static String toString(Date date) { return date.toString(); }
+
+    @TypeConverter
+    public static String animalToString(Animal animal) { return  animal.getName(); }
+
+    @TypeConverter
+    public static Animal toAnimal(String name) { return new Animal(name, null, null); }
 
 }

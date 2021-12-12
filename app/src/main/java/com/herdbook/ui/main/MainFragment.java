@@ -6,15 +6,21 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import javax.inject.Inject;
 import dagger.android.support.DaggerFragment;
 
+import com.herdbook.R;
 import com.herdbook.databinding.MainFragmentBinding;
 import com.herdbook.ui.herd.HerdGridAdapter;
 
@@ -45,6 +51,15 @@ public class MainFragment extends DaggerFragment implements MainContract.View {
         binding = MainFragmentBinding.inflate(getLayoutInflater());
 
         View view = binding.getRoot();
+
+        NavController navController = Navigation.findNavController(view);
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(navController.getGraph()).build();
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+
+
         RecyclerView recyclerView = binding.mainRecyclerView;
 
         int numberOfColumns = calculateNoOfColumns(getContext(), 180);
