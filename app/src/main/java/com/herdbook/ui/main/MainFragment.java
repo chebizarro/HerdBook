@@ -1,19 +1,12 @@
 package com.herdbook.ui.main;
 
-import static com.herdbook.util.ActivityUtils.calculateNoOfColumns;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +15,12 @@ import dagger.android.support.DaggerFragment;
 
 import com.herdbook.R;
 import com.herdbook.databinding.MainFragmentBinding;
+import com.herdbook.ui.animal.AnimalGridAdapter;
+import com.herdbook.ui.animal.AnimalGridViewAdapter;
 import com.herdbook.ui.herd.HerdGridAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainFragment extends DaggerFragment implements MainContract.View {
@@ -33,7 +31,9 @@ public class MainFragment extends DaggerFragment implements MainContract.View {
 
     private MainFragmentBinding binding;
 
-    private HerdGridAdapter mHerdAdapter;
+    private RecyclerView mRecyclerView;
+
+    private AnimalGridAdapter mAdapter;
 
     @Inject
     public MainFragment() {
@@ -45,36 +45,36 @@ public class MainFragment extends DaggerFragment implements MainContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        super.onCreateView(inflater, container, savedInstanceState);
-        setHasOptionsMenu(true);
-
         binding = MainFragmentBinding.inflate(getLayoutInflater());
-
         View view = binding.getRoot();
 
-        NavController navController = Navigation.findNavController(view);
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(navController.getGraph()).build();
-        Toolbar toolbar = view.findViewById(R.id.toolbar);
 
-        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+        mRecyclerView = binding.mainRecyclerView;
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
 
+        //Your RecyclerView.Adapter
+        mAdapter = new AnimalGridAdapter(getActivity());
 
-        RecyclerView recyclerView = binding.mainRecyclerView;
+        //This is the code to provide a sectioned grid
+        List<AnimalGridViewAdapter.Section> sections =
+                new ArrayList<>();
 
-        int numberOfColumns = calculateNoOfColumns(getContext(), 180);
+        //Sections
+        sections.add(new AnimalGridViewAdapter.Section(0,"Section 1"));
+        sections.add(new AnimalGridViewAdapter.Section(5,"Section 2"));
+        sections.add(new AnimalGridViewAdapter.Section(12,"Section 3"));
+        sections.add(new AnimalGridViewAdapter.Section(14,"Section 4"));
+        sections.add(new AnimalGridViewAdapter.Section(20,"Section 5"));
 
-        if (numberOfColumns == 0) {
-            numberOfColumns = 1;
-        }
+        //Add your adapter to the sectionAdapter
+        AnimalGridViewAdapter.Section[] dummy = new AnimalGridViewAdapter.Section[sections.size()];
+        AnimalGridViewAdapter mSectionedAdapter = new
+                AnimalGridViewAdapter(getActivity(),R.layout.main_section_header,R.id.section_text,mRecyclerView,mAdapter);
+        mSectionedAdapter.setSections(sections.toArray(dummy));
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),
-                numberOfColumns));
-
-        //mHerdAdapter = new HerdGridAdapter(getContext());
-        //recyclerView.setAdapter(mHerdAdapter);
-
-        recyclerView.setHasFixedSize(true);
+        //Apply this adapter to the RecyclerView
+        mRecyclerView.setAdapter(mSectionedAdapter);
 
         return view;
     }

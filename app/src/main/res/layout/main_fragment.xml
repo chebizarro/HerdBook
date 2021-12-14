@@ -7,80 +7,19 @@
 
     </data>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        tools:context=".ui.main.MainFragment">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            tools:context=".ui.main.MainActivity">
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/app_bar_height"
-                android:fitsSystemWindows="true"
-                android:theme="@style/Theme.HerdBook.AppBarOverlay">
+    </FrameLayout>
 
-                <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/toolbar_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    app:layout_anchor="@+id/appBarLayout"
-                    app:layout_anchorGravity="top|center"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                    android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-                    >
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true">
-
-                        <include
-                            android:id="@+id/imageview_account_profile"
-                            layout="@layout/profile_picture" />
-
-                    </RelativeLayout>
-
-                    <include
-                        android:id="@+id/toolbar"
-                        layout="@layout/toolbar_main" />
-
-                </com.google.android.material.appbar.CollapsingToolbarLayout>
-            </com.google.android.material.appbar.AppBarLayout>
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.main.MainFragment">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/main_recycler_view"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </FrameLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/m_header"
-            app:menu="@menu/m_menu" />
-
-
-    </androidx.drawerlayout.widget.DrawerLayout>
 
 </layout>
