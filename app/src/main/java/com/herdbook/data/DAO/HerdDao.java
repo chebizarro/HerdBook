@@ -1,9 +1,11 @@
 package com.herdbook.data.DAO;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import com.herdbook.data.models.Herd;
 
@@ -29,4 +31,9 @@ public interface HerdDao {
     @Query("SELECT * FROM herd_table WHERE id =:herdid")
     Herd getHerd(int herdid);
 
+    @Transaction
+    @Query("SELECT * FROM herd_table")
+    LiveData<List<HerdWithAnimals>> loadHerdAndAnimals();
+
 }
+

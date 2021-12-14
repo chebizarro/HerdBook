@@ -3,10 +3,12 @@ package com.herdbook.data;
 import androidx.annotation.NonNull;
 
 import com.google.common.base.Optional;
+import com.herdbook.data.models.Animal;
 import com.herdbook.data.models.Herd;
 import com.herdbook.data.source.HerdDataSource;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -21,6 +23,11 @@ public class FakeHerdRemoteDataSource implements HerdDataSource {
 
     @Override
     public Flowable<List<Herd>> getHerds() {
+        return null;
+    }
+
+    @Override
+    public Flowable<Map<Herd, List<Animal>>> getHerdsAndAnimals() {
         return null;
     }
 

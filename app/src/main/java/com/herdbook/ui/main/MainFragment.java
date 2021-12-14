@@ -57,8 +57,7 @@ public class MainFragment extends DaggerFragment implements MainContract.View {
         mAdapter = new AnimalGridAdapter(getActivity());
 
         //This is the code to provide a sectioned grid
-        List<AnimalGridViewAdapter.Section> sections =
-                new ArrayList<>();
+        List<AnimalGridViewAdapter.Section> sections = new ArrayList<>();
 
         //Sections
         sections.add(new AnimalGridViewAdapter.Section(0,"Section 1"));

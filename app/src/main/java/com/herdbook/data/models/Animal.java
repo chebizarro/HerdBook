@@ -26,6 +26,10 @@ public class Animal {
         this.mDame = mDame;
     }
 
+    public int getHerdId() {
+        return mHerdId;
+    }
+
     public enum Type {
         CATTLE,
         GOAT,
@@ -49,9 +53,8 @@ public class Animal {
     @ColumnInfo(name = "name")
     private String mName;
 
-    @NonNull
-    @ColumnInfo(name = "herd")
-    private Herd mHerd;
+    @ColumnInfo(name = "herdId")
+    private int mHerdId;
 
     @ColumnInfo(name = "type")
     private Type mType;
@@ -59,7 +62,6 @@ public class Animal {
     @ColumnInfo(name = "dob")
     private Date mDob;
 
-    @NonNull
     @ColumnInfo(name = "sex")
     private Sex mSex;
 
@@ -69,9 +71,9 @@ public class Animal {
     @ColumnInfo(name ="dame")
     private Animal mDame;
 
-    public Animal(@NonNull String name, @NonNull Herd herd, Type type) {
+    public Animal(@NonNull String name, int herdId, Type type) {
         this.mName = name;
-        this.mHerd = herd;
+        this.mHerdId = herdId;
         this.mType = type;
     }
 
@@ -100,13 +102,8 @@ public class Animal {
         this.mType = mType;
     }
 
-    @NonNull
-    public Herd getHerd() {
-        return mHerd;
-    }
-
-    public void setHerd(@NonNull Herd mHerd) {
-        this.mHerd = mHerd;
+    public void setHerd(int herdId) {
+        this.mHerdId = herdId;
     }
 
     public Date getDob() {

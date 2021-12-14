@@ -24,6 +24,6 @@ public class AnimalTypeConverter {
     public static String animalToString(Animal animal) { return  animal.getName(); }
 
     @TypeConverter
-    public static Animal toAnimal(String name) { return new Animal(name, null, null); }
+    public static Animal toAnimal(String name) { return new Animal(name, 0, null); }
 
 }

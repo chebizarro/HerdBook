@@ -3,6 +3,7 @@ package com.herdbook.data.source;
 import android.content.Context;
 
 import androidx.room.Database;
+import androidx.room.Query;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverter;
@@ -13,6 +14,7 @@ import com.herdbook.data.DAO.HerdDao;
 import com.herdbook.data.models.Animal;
 import com.herdbook.data.models.Herd;
 
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
