@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import com.google.common.base.Optional;
-import com.herdbook.data.models.Animal;
+import com.herdbook.data.DAO.HerdWithAnimals;
 import com.herdbook.data.models.Herd;
 
 import java.util.LinkedHashMap;
@@ -60,7 +60,7 @@ public class HerdRepository implements HerdDataSource {
     }
 
     @Override
-    public Flowable<Map<Herd, List<Animal>>> getHerdsAndAnimals() {
+    public Flowable<List<HerdWithAnimals>> getHerdsAndAnimals() {
         return mHerdLocalDataSource.getHerdsAndAnimals();
     }
 

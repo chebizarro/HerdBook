@@ -10,7 +10,7 @@ import com.herdbook.data.models.Herd;
 
 public class HerdListAdapter extends ListAdapter<Herd, HerdViewHolder> {
 
-    protected HerdListAdapter(@NonNull DiffUtil.ItemCallback<Herd> diffCallback) {
+     public HerdListAdapter(@NonNull DiffUtil.ItemCallback<Herd> diffCallback) {
         super(diffCallback);
     }
 
