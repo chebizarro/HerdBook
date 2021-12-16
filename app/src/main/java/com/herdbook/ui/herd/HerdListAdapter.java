@@ -18,8 +18,6 @@ import com.herdbook.databinding.HerdGridFragmentBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class HerdListAdapter extends RecyclerView.Adapter<HerdListAdapter.HerdViewHolder> {
 
     private final HerdListSelectedListener herdListSelectedListener;
