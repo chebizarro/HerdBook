@@ -15,9 +15,11 @@ import javax.inject.Inject;
 import dagger.android.support.DaggerFragment;
 
 import com.herdbook.R;
+import com.herdbook.data.models.Animal;
 import com.herdbook.databinding.MainFragmentBinding;
 import com.herdbook.ui.animal.AnimalGridAdapter;
 import com.herdbook.ui.animal.AnimalGridViewAdapter;
+import com.herdbook.ui.herd.HerdListSelectedListener;
 import com.herdbook.ui.herd.HerdViewModel;
 import com.herdbook.util.ViewModelFactory;
 
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainFragment extends DaggerFragment implements MainContract.View {
+public class MainFragment extends DaggerFragment implements MainContract.View, HerdListSelectedListener {
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -122,4 +124,8 @@ public class MainFragment extends DaggerFragment implements MainContract.View {
         });
     }
 
+    @Override
+    public void onAnimalSelected(Animal animal) {
+
+    }
 }
