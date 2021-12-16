@@ -13,14 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.herdbook.R;
 import com.herdbook.data.DAO.HerdWithAnimals;
 import com.herdbook.data.models.Herd;
+import com.herdbook.databinding.HerdGridFragmentBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class HerdListAdapter extends RecyclerView.Adapter<HerdListAdapter.HerdViewHolder> {
 
     private final HerdListSelectedListener herdListSelectedListener;
     private final List<HerdWithAnimals> data = new ArrayList<>();
+
+    private HerdGridFragmentBinding gridFragmentBinding;
 
     public HerdListAdapter(HerdViewModel viewModel, LifecycleOwner lifecycleOwner, HerdListSelectedListener herdListSelectedListener) {
         this.herdListSelectedListener = herdListSelectedListener;
@@ -37,8 +42,9 @@ public class HerdListAdapter extends RecyclerView.Adapter<HerdListAdapter.HerdVi
     @NonNull
     @Override
     public HerdViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.herd_grid_item, parent, false);
-
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.herd_grid_item, parent, false);
+        gridFragmentBinding = HerdGridFragmentBinding.inflate(LayoutInflater.from(parent.getContext()));
+        View view = gridFragmentBinding.getRoot();
         return new HerdViewHolder(view, herdListSelectedListener);
     }
 
