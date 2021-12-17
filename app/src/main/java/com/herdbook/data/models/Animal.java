@@ -1,6 +1,7 @@
 package com.herdbook.data.models;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.BaseObservable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,7 +9,7 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 
 @Entity(tableName="animal_table")
-public class Animal {
+public class Animal extends BaseObservable {
 
     public Animal getSire() {
         return mSire;
@@ -34,7 +35,7 @@ public class Animal {
         CATTLE,
         GOAT,
         HORSE,
-        SHEEP;
+        SHEEP
     }
 
     public enum Sex {
@@ -42,7 +43,7 @@ public class Animal {
         MALE,
         CASTRATED,
         FREEMARTIN,
-        INTERSEX;
+        INTERSEX
     }
 
     @PrimaryKey(autoGenerate = true)
