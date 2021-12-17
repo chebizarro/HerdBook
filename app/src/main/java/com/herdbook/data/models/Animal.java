@@ -2,9 +2,12 @@ package com.herdbook.data.models;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.herdbook.BR;
 
 import java.util.Date;
 
@@ -50,6 +53,7 @@ public class Animal extends BaseObservable {
     @ColumnInfo(name = "id")
     private int id;
 
+    @Bindable
     @NonNull
     @ColumnInfo(name = "name")
     private String mName;
@@ -85,6 +89,7 @@ public class Animal extends BaseObservable {
 
     public void setName(@NonNull String mName) {
         this.mName = mName;
+        notifyPropertyChanged(BR.name);
     }
 
     public int getId() {

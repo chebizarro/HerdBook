@@ -1,5 +1,6 @@
 package com.herdbook.ui.main;
 
+
 import com.herdbook.ui.di.ActivityScoped;
 import com.herdbook.ui.di.FragmentScoped;
 

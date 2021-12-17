@@ -29,6 +29,7 @@ import javax.inject.Singleton;
         SchedulerModule.class,
         HerdRepositoryModule.class,
         ApplicationModule.class,
+        ViewModelModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
 public interface AppComponent extends AndroidInjector<HerdBookApplication> {
