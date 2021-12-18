@@ -7,6 +7,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.herdbook.BR;
+
 import java.util.Date;
 
 @Entity(tableName="animal_table")
@@ -27,12 +29,10 @@ public class Animal extends BaseObservable {
         INTERSEX
     }
 
-    @Bindable
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
 
-    @Bindable
     @NonNull
     @ColumnInfo(name = "name")
     private String mName;
@@ -81,6 +81,7 @@ public class Animal extends BaseObservable {
         this.mType = type;
     }
 
+    @Bindable
     @NonNull
     public String getName() {
         return mName;
@@ -88,9 +89,10 @@ public class Animal extends BaseObservable {
 
     public void setName(@NonNull String name) {
         this.mName = name;
-        //notifyPropertyChanged(BR.name);
+        notifyPropertyChanged(BR.name);
     }
 
+    @Bindable
     public int getId() {
         return id;
     }
