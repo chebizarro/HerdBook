@@ -11,9 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HerdBook" >
         <activity
-            android:name=".ui.animal.AnimalActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.gestation.GestationActivity"
             android:exported="false" />
         <activity

@@ -12,26 +12,6 @@ import java.util.Date;
 @Entity(tableName="animal_table")
 public class Animal extends BaseObservable {
 
-    public Animal getSire() {
-        return mSire;
-    }
-
-    public void setSire(Animal mSire) {
-        this.mSire = mSire;
-    }
-
-    public Animal getDame() {
-        return mDame;
-    }
-
-    public void setDame(Animal mDame) {
-        this.mDame = mDame;
-    }
-
-    public int getHerdId() {
-        return mHerdId;
-    }
-
     public enum Type {
         CATTLE,
         GOAT,
@@ -47,10 +27,12 @@ public class Animal extends BaseObservable {
         INTERSEX
     }
 
+    @Bindable
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private int id;
 
+    @Bindable
     @NonNull
     @ColumnInfo(name = "name")
     private String mName;
@@ -67,11 +49,31 @@ public class Animal extends BaseObservable {
     @ColumnInfo(name = "sex")
     private Sex mSex;
 
+    public int getHerdId() {
+        return mHerdId;
+    }
+
+    public int getSireId() {
+        return mSireId;
+    }
+
+    public void setSireId(int mSireId) {
+        this.mSireId = mSireId;
+    }
+
+    public int getDameId() {
+        return mDameId;
+    }
+
+    public void setDameId(int mDameId) {
+        this.mDameId = mDameId;
+    }
+
     @ColumnInfo(name = "sire")
-    private Animal mSire;
+    private int mSireId;
 
     @ColumnInfo(name ="dame")
-    private Animal mDame;
+    private int mDameId;
 
     public Animal(@NonNull String name, int herdId, Type type) {
         this.mName = name;
@@ -79,7 +81,6 @@ public class Animal extends BaseObservable {
         this.mType = type;
     }
 
-    @Bindable
     @NonNull
     public String getName() {
         return mName;
