@@ -44,7 +44,6 @@ public class MainFragment extends DaggerFragment implements MainContract.View, H
     @Inject
     ViewModelFactory viewModelFactory;
 
-
     private HerdViewModel viewModel;
 
     @Inject
