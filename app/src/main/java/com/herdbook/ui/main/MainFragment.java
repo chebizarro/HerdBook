@@ -44,16 +44,15 @@ public class MainFragment extends DaggerFragment implements MainContract.View, H
     @Inject
     ViewModelFactory viewModelFactory;
 
+
     private HerdViewModel viewModel;
 
     @Inject
-    public MainFragment() {
-        // Requires empty public constructor
-    }
+    public MainFragment() { }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(HerdViewModel.class);
+        viewModel = new ViewModelProvider(this, viewModelFactory).get(HerdViewModel.class);
 
         mRecyclerView = binding.mainRecyclerView;
         mRecyclerView.setHasFixedSize(true);
@@ -75,7 +74,7 @@ public class MainFragment extends DaggerFragment implements MainContract.View, H
         //Add your adapter to the sectionAdapter
         AnimalGridViewAdapter.Section[] dummy = new AnimalGridViewAdapter.Section[sections.size()];
         AnimalGridViewAdapter mSectionedAdapter = new
-                AnimalGridViewAdapter(getActivity(),R.layout.main_section_header,R.id.section_text,mRecyclerView,mAdapter);
+                AnimalGridViewAdapter(getActivity(),R.layout.herd_group_header,R.id.section_text,mRecyclerView,mAdapter);
         mSectionedAdapter.setSections(sections.toArray(dummy));
 
         //Apply this adapter to the RecyclerView

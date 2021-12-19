@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/nav_menu_item_herd"
-        app:actionLayout="@layout/herd_expandable_menu"
+        app:actionLayout="@layout/herd_list_expandable_menu"
         android:title="@string/herds"
         />
     <item

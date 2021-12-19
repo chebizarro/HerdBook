@@ -3,8 +3,6 @@ package com.herdbook.ui.herd;
 import android.os.Bundle;
 import android.view.Menu;
 
-import androidx.appcompat.widget.Toolbar;
-
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.herdbook.R;
 import com.herdbook.databinding.HerdActivityBinding;
@@ -48,7 +46,7 @@ public class HerdActivity extends DaggerAppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+        getMenuInflater().inflate(R.menu.main_toolbar_menu, menu);
         return true;
     }
 }

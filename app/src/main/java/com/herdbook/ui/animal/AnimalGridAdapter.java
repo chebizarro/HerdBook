@@ -38,7 +38,7 @@ public class AnimalGridAdapter extends RecyclerView.Adapter<AnimalGridAdapter.Si
     }
 
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(mContext).inflate(R.layout.herd_grid_item, parent, false);
+        final View view = LayoutInflater.from(mContext).inflate(R.layout.animal_grid_item, parent, false);
         return new SimpleViewHolder(view);
     }
 
