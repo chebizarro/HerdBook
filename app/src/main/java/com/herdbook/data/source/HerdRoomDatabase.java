@@ -2,12 +2,14 @@ package com.herdbook.data.source;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Query;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.herdbook.data.DAO.AnimalDao;
 import com.herdbook.data.DAO.HerdDao;
@@ -36,11 +38,31 @@ public abstract class HerdRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             HerdRoomDatabase.class, "herd_database")
+                            .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
             }
         }
         return INSTANCE;
     }
+
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+
+            databaseWriteExecutor.execute(() -> {
+
+                HerdDao dao = INSTANCE.herdDao();
+                dao.deleteAll();
+
+                Herd herd = new Herd("My First Herd");
+
+                dao.insert(herd);
+
+            });
+        }
+    };
+
 
 }
