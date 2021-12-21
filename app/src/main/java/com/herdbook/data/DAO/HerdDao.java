@@ -5,7 +5,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import androidx.room.Update;
 
+import com.herdbook.data.models.Animal;
 import com.herdbook.data.models.Herd;
 
 import java.util.List;
@@ -17,6 +19,15 @@ public interface HerdDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Herd herd);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(Animal animal);
+
+    @Update
+    void updateHerd(Herd herd);
+
+    @Update
+    void updateAnimal(Animal animal);
 
     @Query("DELETE FROM herd_table")
     void deleteAll();

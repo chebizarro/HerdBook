@@ -14,7 +14,7 @@ public interface HerdDataSource {
 
     Flowable<List<Herd>> getHerds();
 
-    Flowable<List<HerdWithAnimals>> getHerdsAndAnimals();
+    Flowable<List<HerdWithAnimals>> getHerdsWithAnimals();
 
     Flowable<Optional<Herd>> getHerd(int herdId);
 

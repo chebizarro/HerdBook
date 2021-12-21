@@ -23,6 +23,7 @@
         <entry key="app/src/main/res/layout/animal_activity.xml" value="0.1" />
         <entry key="app/src/main/res/layout/animal_edit_fragment.xml" value="0.24818840579710144" />
         <entry key="app/src/main/res/layout/animal_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/animal_grid_item.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/animal_name_list_group.xml" value="0.1398148148148148" />
         <entry key="app/src/main/res/layout/animal_name_list_item_group.xml" value="0.1398148148148148" />
         <entry key="app/src/main/res/layout/content_herd.xml" value="0.11347517730496454" />
@@ -37,6 +38,7 @@
         <entry key="app/src/main/res/layout/herd_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/herd_grid_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/herd_grid_item.xml" value="0.11347517730496454" />
+        <entry key="app/src/main/res/layout/herd_group_header.xml" value="0.18931159420289856" />
         <entry key="app/src/main/res/layout/herd_list_expandable_menu.xml" value="0.21048632218844984" />
         <entry key="app/src/main/res/layout/m_header.xml" value="0.25" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.22981366459627328" />

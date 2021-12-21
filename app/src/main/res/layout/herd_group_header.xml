@@ -6,6 +6,10 @@
             name="data"
             type="com.herdbook.data.models.Herd" />
 
+        <variable
+            name="callback"
+            type="com.herdbook.ui.herd.HerdListActionCallback" />
+
     </data>
 
     <TextView

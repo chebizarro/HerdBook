@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="data"
-            type="com.herdbook.data.models.Animal" />
+            name="callback"
+            type="com.herdbook.ui.herd.HerdListActionCallback" />
 
     </data>
 
@@ -16,7 +16,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/main_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            />
 
         <ProgressBar
             android:layout_width="wrap_content"

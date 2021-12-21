@@ -1,152 +1,81 @@
 package com.herdbook.ui.herd;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.herdbook.BR;
+import com.herdbook.R;
 import com.herdbook.data.DAO.HerdWithAnimals;
 import com.herdbook.data.models.Animal;
 import com.herdbook.data.models.Herd;
-import com.herdbook.databinding.HerdGridFragmentBinding;
+import com.herdbook.ui.BaseDataBoundAdapter;
+import com.herdbook.ui.DataBoundViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HerdListAdapter extends RecyclerView.Adapter<HerdListAdapter.HerdViewHolder> {
+public class HerdListAdapter extends BaseDataBoundAdapter {
 
-    private final HerdListSelectedListener herdListSelectedListener;
+    private final HerdListActionCallback mActionCallback;
 
-    private final List<HerdWithAnimals> data = new ArrayList<>();
-
-    private final List<ListItem> listItems = new ArrayList<>();
-
-    private HerdGridFragmentBinding gridFragmentBinding;
+    private final List<Object> mItems = new ArrayList<>();
 
     public HerdListAdapter(HerdViewModel viewModel,
                            LifecycleOwner lifecycleOwner,
-                           HerdListSelectedListener herdListSelectedListener) {
+                           HerdListActionCallback actionCallback) {
 
-        this.herdListSelectedListener = herdListSelectedListener;
         viewModel.getHerds().observe(lifecycleOwner, herds -> {
-            data.clear();
+            mItems.clear();
             if (herds != null) {
-                data.addAll(herds);
-
+                Log.i("INFO", "Herd count: " + herds.size() );
                 for (HerdWithAnimals herd : herds) {
-                    listItems.add(new HerdListItem(herd.herd));
-                    for (Animal animal : herd.animals) {
-                        listItems.add(new AnimalListItem(animal));
-                    }
+                    mItems.add(herd.herd);
+                    mItems.addAll(herd.animals);
                 }
-
                 notifyDataSetChanged();
             }
         });
-        setHasStableIds(true);
-    }
-
-    @NonNull
-    @Override
-    public HerdViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.herd_grid_item, parent, false);
-        gridFragmentBinding = HerdGridFragmentBinding.inflate(LayoutInflater.from(parent.getContext()));
-        View view = gridFragmentBinding.getRoot();
-        return new HerdViewHolder(view, herdListSelectedListener);
+        this.mActionCallback = actionCallback;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HerdViewHolder holder, int position) {
-        holder.bind(data.get(position));
+    protected void bindItem(DataBoundViewHolder holder, int position, List payloads) {
+        holder.binding.setVariable(BR.data, mItems.get(position));
+        holder.binding.setVariable(BR.callback, mActionCallback);
+    }
+
+
+    @Override
+    public int getItemLayoutId(int position) {
+        // use layout ids as types
+        Object item = getItem(position);
+        if (item instanceof Herd) {
+            return R.layout.herd_group_header;
+        }
+        if (item instanceof Animal) {
+            return R.layout.animal_grid_item;
+        }
+        throw new IllegalArgumentException("Unknown item type " + item);
     }
 
     @Override
     public int getItemCount() {
-        return listItems.size();
+        return mItems.size();
     }
 
-    @Override
-    public long getItemId(int position) {
-        return data.get(position).herd.getId();
+    public Object getItem(int position) {
+        return mItems.get(position);
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return listItems.get(position).getViewType();
+    public void addItem(Object item) {
+        mItems.add(item);
+        notifyItemInserted(mItems.size() - 1);
     }
 
-    static final class HerdViewHolder extends RecyclerView.ViewHolder {
-
-        private HerdWithAnimals herd;
-
-        public HerdViewHolder(@NonNull View itemView, HerdListSelectedListener herdListSelectedListener) {
-            super(itemView);
-        }
-
-        void bind(HerdWithAnimals herd) {
-            this.herd = herd;
-        }
+    public void addItem(int position, Object item) {
+        mItems.add(position, item);
+        notifyItemInserted(position);
     }
 
-    public static class AnimalViewHolder extends RecyclerView.ViewHolder {
-
-        public AnimalViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
-    }
-
-    static abstract class ListItem<T> {
-
-        T item;
-
-        ListItem(T item) {
-            this.item = item;
-        }
-
-        @NonNull
-        abstract RecyclerView.ViewHolder viewHolderFactory(ViewGroup parent);
-
-        abstract int getViewType();
-    }
-
-    static class AnimalListItem extends ListItem<Animal> {
-
-        AnimalListItem(Animal item) {
-            super(item);
-        }
-
-        @NonNull
-        @Override
-        RecyclerView.ViewHolder viewHolderFactory(ViewGroup parent) {
-            HerdGridFragmentBinding gridFragmentBinding = HerdGridFragmentBinding.inflate(LayoutInflater.from(parent.getContext()));
-
-            return null;
-        }
-
-        @Override
-        int getViewType() {
-            return 0;
-        }
-    }
-
-    static class HerdListItem extends ListItem<Herd> {
-
-        HerdListItem(Herd item) {
-            super(item);
-        }
-
-        @NonNull
-        @Override
-        RecyclerView.ViewHolder viewHolderFactory(ViewGroup parent) {
-            return null;
-        }
-
-        @Override
-        int getViewType() {
-            return 0;
-        }
-    }
 }

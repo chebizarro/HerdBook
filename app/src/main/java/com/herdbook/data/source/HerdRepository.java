@@ -60,8 +60,8 @@ public class HerdRepository implements HerdDataSource {
     }
 
     @Override
-    public Flowable<List<HerdWithAnimals>> getHerdsAndAnimals() {
-        return mHerdLocalDataSource.getHerdsAndAnimals();
+    public Flowable<List<HerdWithAnimals>> getHerdsWithAnimals() {
+        return mHerdLocalDataSource.getHerdsWithAnimals();
     }
 
     private Flowable<List<Herd>> getAndCacheLocalHerds() {

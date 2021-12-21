@@ -1,6 +1,7 @@
 package com.herdbook.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,8 @@ import com.herdbook.data.models.Animal;
 import com.herdbook.databinding.MainFragmentBinding;
 import com.herdbook.ui.animal.AnimalGridAdapter;
 import com.herdbook.ui.animal.AnimalGridViewAdapter;
-import com.herdbook.ui.herd.HerdListSelectedListener;
+import com.herdbook.ui.herd.HerdListActionCallback;
+import com.herdbook.ui.herd.HerdListAdapter;
 import com.herdbook.ui.herd.HerdViewModel;
 import com.herdbook.util.ViewModelFactory;
 
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainFragment extends DaggerFragment implements MainContract.View, HerdListSelectedListener {
+public class MainFragment extends DaggerFragment implements MainContract.View, HerdListActionCallback {
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -37,7 +39,7 @@ public class MainFragment extends DaggerFragment implements MainContract.View, H
 
     private RecyclerView mRecyclerView;
 
-    private AnimalGridAdapter mAdapter;
+    private HerdListAdapter mAdapter;
 
     private View loadingView;
 
@@ -56,28 +58,10 @@ public class MainFragment extends DaggerFragment implements MainContract.View, H
         mRecyclerView = binding.mainRecyclerView;
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
-
         //Your RecyclerView.Adapter
-        mAdapter = new AnimalGridAdapter(getActivity());
+        mAdapter = new HerdListAdapter(viewModel, getViewLifecycleOwner(), this);
 
-        //This is the code to provide a sectioned grid
-        List<AnimalGridViewAdapter.Section> sections = new ArrayList<>();
-
-        //Sections
-        sections.add(new AnimalGridViewAdapter.Section(0,"Section 1"));
-        sections.add(new AnimalGridViewAdapter.Section(5,"Section 2"));
-        sections.add(new AnimalGridViewAdapter.Section(12,"Section 3"));
-        sections.add(new AnimalGridViewAdapter.Section(14,"Section 4"));
-        sections.add(new AnimalGridViewAdapter.Section(20,"Section 5"));
-
-        //Add your adapter to the sectionAdapter
-        AnimalGridViewAdapter.Section[] dummy = new AnimalGridViewAdapter.Section[sections.size()];
-        AnimalGridViewAdapter mSectionedAdapter = new
-                AnimalGridViewAdapter(getActivity(),R.layout.herd_group_header,R.id.section_text,mRecyclerView,mAdapter);
-        mSectionedAdapter.setSections(sections.toArray(dummy));
-
-        //Apply this adapter to the RecyclerView
-        mRecyclerView.setAdapter(mSectionedAdapter);
+        mRecyclerView.setAdapter(mAdapter);
 
         loadingView = binding.loadingView;
 

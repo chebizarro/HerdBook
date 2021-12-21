@@ -46,7 +46,7 @@ public class HerdViewModel extends AndroidViewModel {
 
     private void fetchHerds() {
         loading.setValue(true);
-        disposable.add(mRepository.getHerdsAndAnimals()
+        disposable.add(mRepository.getHerdsWithAnimals()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<List<HerdWithAnimals>>() {

@@ -26,7 +26,7 @@ public class FakeHerdRemoteDataSource implements HerdDataSource {
     }
 
     @Override
-    public Flowable<List<HerdWithAnimals>> getHerdsAndAnimals() {
+    public Flowable<List<HerdWithAnimals>> getHerdsWithAnimals() {
         return null;
     }
 

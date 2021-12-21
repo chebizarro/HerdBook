@@ -2,6 +2,8 @@ package com.herdbook.data.source.local;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.google.common.base.Optional;
 import com.herdbook.data.DAO.HerdDao;
 import com.herdbook.data.DAO.HerdWithAnimals;
@@ -15,7 +17,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Flowable;
 
 @Singleton
@@ -38,7 +39,7 @@ public class HerdLocalDataSource implements HerdDataSource {
     }
 
     @Override
-    public Flowable<List<HerdWithAnimals>> getHerdsAndAnimals() {
+    public Flowable<List<HerdWithAnimals>> getHerdsWithAnimals() {
         return mHerdDao.loadHerdAndAnimals();
     }
 
@@ -48,7 +49,7 @@ public class HerdLocalDataSource implements HerdDataSource {
     }
 
     @Override
-    public void saveHerd(@androidx.annotation.NonNull Herd herd) {
+    public void saveHerd(@NonNull Herd herd) {
         mHerdDao.insert(herd);
     }
 }
