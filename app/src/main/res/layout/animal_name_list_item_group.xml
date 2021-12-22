@@ -4,7 +4,7 @@
     <data>
         <variable
             name="data"
-            type="com.herdbook.data.models.Animal" />
+            type="com.herdbook.data.source.local.model.Animal" />
 
     </data>
 

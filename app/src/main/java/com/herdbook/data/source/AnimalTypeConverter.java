@@ -3,8 +3,8 @@ package com.herdbook.data.source;
 import androidx.room.TypeConverter;
 import java.util.Date;
 
-import com.herdbook.data.models.Animal;
-import com.herdbook.data.models.Herd;
+import com.herdbook.data.source.local.model.Animal;
+import com.herdbook.data.source.local.model.Herd;
 
 public class AnimalTypeConverter {
 

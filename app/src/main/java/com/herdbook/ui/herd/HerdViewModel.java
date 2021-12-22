@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.herdbook.data.DAO.HerdWithAnimals;
+import com.herdbook.data.dao.HerdWithAnimals;
 import com.herdbook.data.source.HerdRepository;
 
 import java.util.List;

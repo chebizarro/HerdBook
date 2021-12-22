@@ -5,9 +5,9 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.google.common.base.Optional;
-import com.herdbook.data.DAO.HerdDao;
-import com.herdbook.data.DAO.HerdWithAnimals;
-import com.herdbook.data.models.Herd;
+import com.herdbook.data.dao.HerdDao;
+import com.herdbook.data.dao.HerdWithAnimals;
+import com.herdbook.data.source.local.model.Herd;
 import com.herdbook.data.source.HerdDataSource;
 import com.herdbook.data.source.HerdRoomDatabase;
 import com.herdbook.util.schedulers.BaseSchedulerProvider;

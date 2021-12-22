@@ -4,7 +4,7 @@
     <data>
         <variable
             name="data"
-            type="com.herdbook.data.models.Herd" />
+            type="com.herdbook.data.source.local.model.Herd" />
 
         <variable
             name="callback"

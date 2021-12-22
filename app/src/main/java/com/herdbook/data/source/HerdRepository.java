@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import com.google.common.base.Optional;
-import com.herdbook.data.DAO.HerdWithAnimals;
-import com.herdbook.data.models.Herd;
+import com.herdbook.data.dao.HerdWithAnimals;
+import com.herdbook.data.source.local.model.Herd;
 
 import java.util.LinkedHashMap;
 import java.util.List;

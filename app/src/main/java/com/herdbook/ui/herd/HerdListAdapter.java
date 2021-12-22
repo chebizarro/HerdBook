@@ -6,9 +6,9 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.herdbook.BR;
 import com.herdbook.R;
-import com.herdbook.data.DAO.HerdWithAnimals;
-import com.herdbook.data.models.Animal;
-import com.herdbook.data.models.Herd;
+import com.herdbook.data.dao.HerdWithAnimals;
+import com.herdbook.data.source.local.model.Animal;
+import com.herdbook.data.source.local.model.Herd;
 import com.herdbook.ui.BaseDataBoundAdapter;
 import com.herdbook.ui.DataBoundViewHolder;
 

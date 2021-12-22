@@ -1,7 +1,6 @@
 package com.herdbook.ui.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import javax.inject.Inject;
 import dagger.android.support.DaggerFragment;
 
-import com.herdbook.R;
-import com.herdbook.data.models.Animal;
+import com.herdbook.data.source.local.model.Animal;
 import com.herdbook.databinding.MainFragmentBinding;
-import com.herdbook.ui.animal.AnimalGridAdapter;
-import com.herdbook.ui.animal.AnimalGridViewAdapter;
 import com.herdbook.ui.herd.HerdListActionCallback;
 import com.herdbook.ui.herd.HerdListAdapter;
 import com.herdbook.ui.herd.HerdViewModel;
 import com.herdbook.util.ViewModelFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainFragment extends DaggerFragment implements MainContract.View, HerdListActionCallback {

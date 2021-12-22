@@ -4,19 +4,16 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
-import androidx.room.Query;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.herdbook.data.DAO.AnimalDao;
-import com.herdbook.data.DAO.HerdDao;
-import com.herdbook.data.models.Animal;
-import com.herdbook.data.models.Herd;
+import com.herdbook.data.dao.AnimalDao;
+import com.herdbook.data.dao.HerdDao;
+import com.herdbook.data.source.local.model.Animal;
+import com.herdbook.data.source.local.model.Herd;
 
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

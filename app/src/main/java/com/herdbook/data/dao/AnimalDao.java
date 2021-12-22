@@ -1,11 +1,11 @@
-package com.herdbook.data.DAO;
+package com.herdbook.data.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.herdbook.data.models.Animal;
+import com.herdbook.data.source.local.model.Animal;
 
 import java.util.List;
 

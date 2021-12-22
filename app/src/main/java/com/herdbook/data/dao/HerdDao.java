@@ -1,4 +1,4 @@
-package com.herdbook.data.DAO;
+package com.herdbook.data.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -7,8 +7,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.herdbook.data.models.Animal;
-import com.herdbook.data.models.Herd;
+import com.herdbook.data.source.local.model.Animal;
+import com.herdbook.data.source.local.model.Herd;
 
 import java.util.List;
 

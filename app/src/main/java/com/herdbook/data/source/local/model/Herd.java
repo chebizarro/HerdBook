@@ -1,4 +1,4 @@
-package com.herdbook.data.models;
+package com.herdbook.data.source.local.model;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
