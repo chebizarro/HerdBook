@@ -1,5 +1,7 @@
 package com.herdbook.domain.repository;
 
+import static com.herdbook.data.source.local.model.DBMapper.mapHerdDto;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
@@ -9,6 +11,8 @@ import com.herdbook.data.source.HerdDataSource;
 import com.herdbook.data.source.Local;
 import com.herdbook.data.source.Remote;
 import com.herdbook.data.source.local.model.DBHerd;
+import com.herdbook.data.source.local.model.DBMapper;
+import com.herdbook.domain.model.Herd;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -21,14 +25,14 @@ import javax.inject.Singleton;
 import io.reactivex.rxjava3.core.Flowable;
 
 @Singleton
-public class HerdRepository implements HerdDataSource {
+public class HerdRepository {
 
     private final HerdDataSource mHerdRemoteDataSource;
     private final HerdDataSource mHerdLocalDataSource;
 
     @VisibleForTesting
     @Nullable
-    Map<Integer, DBHerd> mCachedHerds;
+    Map<Integer, Herd> mCachedHerds;
 
     @VisibleForTesting
     boolean mCacheIsDirty = false;
@@ -41,20 +45,19 @@ public class HerdRepository implements HerdDataSource {
     }
 
 
-    @Override
-    public Flowable<List<DBHerd>> getHerds() {
+    public Flowable<List<Herd>> getHerds() {
         if (mCachedHerds != null && mCacheIsDirty) {
             return Flowable.fromIterable(mCachedHerds.values()).toList().toFlowable();
         } else if (mCachedHerds == null) {
             mCachedHerds = new LinkedHashMap<>();
         }
 
-        Flowable<List<DBHerd>> remoteHerds = getAndSaveRemoteHerds();
+        Flowable<List<Herd>> remoteHerds = getAndSaveRemoteHerds();
 
         if(mCacheIsDirty) {
             return remoteHerds;
         } else {
-            Flowable<List<DBHerd>> localHerds = getAndCacheLocalHerds();
+            Flowable<List<Herd>> localHerds = getAndCacheLocalHerds();
             return Flowable.concat(localHerds, remoteHerds)
                     .filter(herds -> !herds.isEmpty())
                     .firstOrError()
@@ -62,34 +65,35 @@ public class HerdRepository implements HerdDataSource {
         }
     }
 
-    @Override
     public Flowable<List<HerdWithAnimals>> getHerdsWithAnimals() {
         return mHerdLocalDataSource.getHerdsWithAnimals();
     }
 
-    private Flowable<List<DBHerd>> getAndCacheLocalHerds() {
+    private Flowable<List<Herd>> getAndCacheLocalHerds() {
         return mHerdLocalDataSource.getHerds()
                 .flatMap(herds -> Flowable.fromIterable(herds)
+                        .map(DBMapper::mapHerdDto)
                         .doOnNext(herd -> mCachedHerds.put(herd.getId(), herd))
                         .toList()
                         .toFlowable());
     }
 
-    private Flowable<List<DBHerd>> getAndSaveRemoteHerds() {
+    private Flowable<List<Herd>> getAndSaveRemoteHerds() {
         return mHerdRemoteDataSource
                 .getHerds()
-                .flatMap(herds -> Flowable.fromIterable(herds).doOnNext(herd -> {
-                    mHerdLocalDataSource.saveHerd(herd);
+                .flatMap(herds -> Flowable.fromIterable(herds)
+                        .map(DBMapper::mapHerdDto)
+                        .doOnNext(herd -> {
+                    //mHerdLocalDataSource.saveHerd(herd);
                     mCachedHerds.put(herd.getId(), herd);
                 }).toList().toFlowable())
                 .doOnComplete(() -> mCacheIsDirty = false);
 
     }
 
-    @Override
-    public Flowable<Optional<DBHerd>> getHerd(int herdId) {
+    public Flowable<Optional<Herd>> getHerd(int herdId) {
 
-        final DBHerd cachedHerd = getHerdWithID(herdId);
+        final Herd cachedHerd = getHerdWithID(herdId);
 
         if (cachedHerd != null) {
             return Flowable.just(Optional.of(cachedHerd));
@@ -99,13 +103,14 @@ public class HerdRepository implements HerdDataSource {
             mCachedHerds = new LinkedHashMap<>();
         }
 
-        Flowable<Optional<DBHerd>> localHerd = getHerdWithIdFromLocalRepository(herdId);
-        Flowable<Optional<DBHerd>> remoteHerd = mHerdRemoteDataSource
+        Flowable<Optional<Herd>> localHerd = getHerdWithIdFromLocalRepository(herdId);
+        Flowable<Optional<Herd>> remoteHerd = mHerdRemoteDataSource
                 .getHerd(herdId)
+                .map(herd -> Optional.of(mapHerdDto(herd.get())))
                 .doOnNext(mapOptional -> {
                     if (mapOptional.isPresent()) {
-                        DBHerd herd = mapOptional.get();
-                        mHerdLocalDataSource.saveHerd(herd);
+                        Herd herd = mapOptional.get();
+                        //mHerdLocalDataSource.saveHerd(herd);
                         mCachedHerds.put(herd.getId(), herd);
                     }
                 });
@@ -115,9 +120,10 @@ public class HerdRepository implements HerdDataSource {
                 .toFlowable();
     }
 
-    private Flowable<Optional<DBHerd>> getHerdWithIdFromLocalRepository(int herdId) {
+    private Flowable<Optional<Herd>> getHerdWithIdFromLocalRepository(int herdId) {
         return mHerdLocalDataSource
                 .getHerd(herdId)
+                .map(herd -> Optional.of(mapHerdDto(herd.get())))
                 .doOnNext(herdOptional -> {
                     if (herdOptional.isPresent()) {
                         mCachedHerds.put(herdId, herdOptional.get());
@@ -126,7 +132,7 @@ public class HerdRepository implements HerdDataSource {
                 .firstElement().toFlowable();
     }
 
-    private DBHerd getHerdWithID(int herdId) {
+    private Herd getHerdWithID(int herdId) {
         if (mCachedHerds == null || mCachedHerds.isEmpty()) {
             return null;
         } else {
@@ -134,10 +140,9 @@ public class HerdRepository implements HerdDataSource {
         }
     }
 
-    @Override
-    public void saveHerd(@NonNull DBHerd herd) {
-        mHerdRemoteDataSource.saveHerd(herd);
-        mHerdLocalDataSource.saveHerd(herd);
+    public void saveHerd(@NonNull Herd herd) {
+        //mHerdRemoteDataSource.saveHerd(herd);
+        //mHerdLocalDataSource.saveHerd(herd);
 
         if(mCachedHerds == null) {
             mCachedHerds = new LinkedHashMap<>();
