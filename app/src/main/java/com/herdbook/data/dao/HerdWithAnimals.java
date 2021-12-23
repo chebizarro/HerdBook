@@ -3,19 +3,19 @@ package com.herdbook.data.dao;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
-import com.herdbook.data.source.local.model.Animal;
-import com.herdbook.data.source.local.model.Herd;
+import com.herdbook.data.source.local.model.DBHerd;
+import com.herdbook.data.source.local.model.DBAnimal;
 
 import java.util.List;
 
 public class HerdWithAnimals {
     @Embedded
-    public Herd herd;
+    public DBHerd herd;
 
     @Relation(
             parentColumn = "id",
             entityColumn = "herdId"
     )
-    public List<Animal> animals;
+    public List<DBAnimal> animals;
 
 }

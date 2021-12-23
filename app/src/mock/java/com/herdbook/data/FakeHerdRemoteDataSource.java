@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.common.base.Optional;
 import com.herdbook.data.dao.HerdWithAnimals;
-import com.herdbook.data.source.local.model.Herd;
+import com.herdbook.data.source.local.model.DBHerd;
 import com.herdbook.data.source.HerdDataSource;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class FakeHerdRemoteDataSource implements HerdDataSource {
     }
 
     @Override
-    public Flowable<List<Herd>> getHerds() {
+    public Flowable<List<DBHerd>> getHerds() {
         return null;
     }
 
@@ -31,12 +31,12 @@ public class FakeHerdRemoteDataSource implements HerdDataSource {
     }
 
     @Override
-    public Flowable<Optional<Herd>> getHerd(int herdId) {
+    public Flowable<Optional<DBHerd>> getHerd(int herdId) {
         return null;
     }
 
     @Override
-    public void saveHerd(@NonNull Herd herd) {
+    public void saveHerd(@NonNull DBHerd herd) {
 
     }
 }

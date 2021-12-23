@@ -2,7 +2,7 @@ package com.herdbook.ui.di;
 
 import android.app.Application;
 
-import com.herdbook.data.source.HerdRepository;
+import com.herdbook.domain.repository.HerdRepository;
 import com.herdbook.data.source.HerdRepositoryModule;
 import com.herdbook.ui.HerdBookApplication;
 import com.herdbook.util.schedulers.SchedulerModule;

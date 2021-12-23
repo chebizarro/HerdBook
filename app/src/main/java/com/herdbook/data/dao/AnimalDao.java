@@ -5,7 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.herdbook.data.source.local.model.Animal;
+import com.herdbook.data.source.local.model.DBAnimal;
 
 import java.util.List;
 
@@ -13,15 +13,15 @@ import java.util.List;
 public interface AnimalDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Animal animal);
+    void insert(DBAnimal animal);
 
     @Query("DELETE from animal_table")
     void deleteAll();
 
     @Query("SELECT * from animal_table")
-    List<Animal> getAnimals();
+    List<DBAnimal> getAnimals();
 
     @Query("SELECT * from animal_table WHERE id =:animalId")
-    Animal getAnimal(int animalId);
+    DBAnimal getAnimal(int animalId);
 
 }

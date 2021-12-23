@@ -7,8 +7,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.herdbook.data.source.local.model.Animal;
-import com.herdbook.data.source.local.model.Herd;
+import com.herdbook.data.source.local.model.DBHerd;
+import com.herdbook.data.source.local.model.DBAnimal;
 
 import java.util.List;
 
@@ -18,28 +18,28 @@ import io.reactivex.rxjava3.core.Flowable;
 public interface HerdDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Herd herd);
+    void insert(DBHerd herd);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Animal animal);
+    void insert(DBAnimal animal);
 
     @Update
-    void updateHerd(Herd herd);
+    void updateHerd(DBHerd herd);
 
     @Update
-    void updateAnimal(Animal animal);
+    void updateAnimal(DBAnimal animal);
 
     @Query("DELETE FROM herd_table")
     void deleteAll();
 
     @Query("SELECT * FROM herd_table ORDER BY name ASC")
-    Flowable<List<Herd>> getAlphabetizedHerds();
+    Flowable<List<DBHerd>> getAlphabetizedHerds();
 
     @Query("SELECT * FROM herd_table")
-    Flowable<List<Herd>> getHerds();
+    Flowable<List<DBHerd>> getHerds();
 
     @Query("SELECT * FROM herd_table WHERE id =:herdid")
-    Herd getHerd(int herdid);
+    DBHerd getHerd(int herdid);
 
     @Transaction
     @Query("SELECT * FROM herd_table")

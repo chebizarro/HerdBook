@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import javax.inject.Inject;
 import dagger.android.support.DaggerFragment;
 
-import com.herdbook.data.source.local.model.Animal;
+import com.herdbook.data.source.local.model.DBAnimal;
 import com.herdbook.databinding.MainFragmentBinding;
 import com.herdbook.ui.herd.HerdListActionCallback;
 import com.herdbook.ui.herd.HerdListAdapter;
@@ -100,7 +100,7 @@ public class MainFragment extends DaggerFragment implements MainContract.View, H
     }
 
     @Override
-    public void onAnimalSelected(Animal animal) {
+    public void onAnimalSelected(DBAnimal animal) {
 
     }
 }

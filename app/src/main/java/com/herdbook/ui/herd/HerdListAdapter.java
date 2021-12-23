@@ -7,8 +7,8 @@ import androidx.lifecycle.LifecycleOwner;
 import com.herdbook.BR;
 import com.herdbook.R;
 import com.herdbook.data.dao.HerdWithAnimals;
-import com.herdbook.data.source.local.model.Animal;
-import com.herdbook.data.source.local.model.Herd;
+import com.herdbook.data.source.local.model.DBAnimal;
+import com.herdbook.data.source.local.model.DBHerd;
 import com.herdbook.ui.BaseDataBoundAdapter;
 import com.herdbook.ui.DataBoundViewHolder;
 
@@ -28,7 +28,7 @@ public class HerdListAdapter extends BaseDataBoundAdapter {
         viewModel.getHerds().observe(lifecycleOwner, herds -> {
             mItems.clear();
             if (herds != null) {
-                Log.i("INFO", "Herd count: " + herds.size() );
+                Log.i("INFO", "DBHerd count: " + herds.size() );
                 for (HerdWithAnimals herd : herds) {
                     mItems.add(herd.herd);
                     mItems.addAll(herd.animals);
@@ -50,10 +50,10 @@ public class HerdListAdapter extends BaseDataBoundAdapter {
     public int getItemLayoutId(int position) {
         // use layout ids as types
         Object item = getItem(position);
-        if (item instanceof Herd) {
+        if (item instanceof DBHerd) {
             return R.layout.herd_group_header;
         }
-        if (item instanceof Animal) {
+        if (item instanceof DBAnimal) {
             return R.layout.animal_grid_item;
         }
         throw new IllegalArgumentException("Unknown item type " + item);

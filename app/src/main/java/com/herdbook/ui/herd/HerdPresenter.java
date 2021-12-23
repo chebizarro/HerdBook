@@ -2,7 +2,7 @@ package com.herdbook.ui.herd;
 
 import androidx.annotation.Nullable;
 
-import com.herdbook.data.source.HerdRepository;
+import com.herdbook.domain.repository.HerdRepository;
 
 import javax.inject.Inject;
 

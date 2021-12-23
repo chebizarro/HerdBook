@@ -7,9 +7,8 @@ import androidx.annotation.NonNull;
 import com.google.common.base.Optional;
 import com.herdbook.data.dao.HerdDao;
 import com.herdbook.data.dao.HerdWithAnimals;
-import com.herdbook.data.source.local.model.Herd;
+import com.herdbook.data.source.local.model.DBHerd;
 import com.herdbook.data.source.HerdDataSource;
-import com.herdbook.data.source.HerdRoomDatabase;
 import com.herdbook.util.schedulers.BaseSchedulerProvider;
 
 import java.util.List;
@@ -34,7 +33,7 @@ public class HerdLocalDataSource implements HerdDataSource {
     }
 
     @Override
-    public Flowable<List<Herd>> getHerds() {
+    public Flowable<List<DBHerd>> getHerds() {
         return mHerdDao.getHerds();
     }
 
@@ -44,12 +43,12 @@ public class HerdLocalDataSource implements HerdDataSource {
     }
 
     @Override
-    public Flowable<Optional<Herd>> getHerd(int herdId) {
+    public Flowable<Optional<DBHerd>> getHerd(int herdId) {
         return Flowable.just(Optional.of(mHerdDao.getHerd(herdId)));
     }
 
     @Override
-    public void saveHerd(@NonNull Herd herd) {
+    public void saveHerd(@NonNull DBHerd herd) {
         mHerdDao.insert(herd);
     }
 }

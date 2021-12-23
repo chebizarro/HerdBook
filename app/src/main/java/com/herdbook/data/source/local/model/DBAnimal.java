@@ -1,18 +1,14 @@
 package com.herdbook.data.source.local.model;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.herdbook.BR;
-
 import java.util.Date;
 
 @Entity(tableName="animal_table")
-public class Animal extends BaseObservable {
+public class DBAnimal {
 
     public enum Type {
         CATTLE,
@@ -31,7 +27,7 @@ public class Animal extends BaseObservable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private int id;
+    int id;
 
     @NonNull
     @ColumnInfo(name = "name")
@@ -75,13 +71,12 @@ public class Animal extends BaseObservable {
     @ColumnInfo(name ="dame")
     private int mDameId;
 
-    public Animal(@NonNull String name, int herdId, Type type) {
+    public DBAnimal(@NonNull String name, int herdId, Type type) {
         this.mName = name;
         this.mHerdId = herdId;
         this.mType = type;
     }
 
-    @Bindable
     @NonNull
     public String getName() {
         return mName;
@@ -89,10 +84,8 @@ public class Animal extends BaseObservable {
 
     public void setName(@NonNull String name) {
         this.mName = name;
-        notifyPropertyChanged(BR.name);
     }
 
-    @Bindable
     public int getId() {
         return id;
     }

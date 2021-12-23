@@ -2,7 +2,7 @@ package com.herdbook.ui;
 
 import androidx.annotation.VisibleForTesting;
 
-import com.herdbook.data.source.HerdRepository;
+import com.herdbook.domain.repository.HerdRepository;
 import com.herdbook.ui.di.DaggerAppComponent;
 
 import javax.inject.Inject;

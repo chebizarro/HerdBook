@@ -1,4 +1,4 @@
-package com.herdbook.data.source;
+package com.herdbook.data.source.local;
 
 import android.content.Context;
 
@@ -11,13 +11,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.herdbook.data.dao.AnimalDao;
 import com.herdbook.data.dao.HerdDao;
-import com.herdbook.data.source.local.model.Animal;
-import com.herdbook.data.source.local.model.Herd;
+import com.herdbook.data.source.AnimalTypeConverter;
+import com.herdbook.data.source.local.model.DBAnimal;
+import com.herdbook.data.source.local.model.DBHerd;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Herd.class, Animal.class}, version = 1, exportSchema = false)
+@Database(entities = {DBHerd.class, DBAnimal.class}, version = 1, exportSchema = false)
 @TypeConverters({AnimalTypeConverter.class})
 public abstract class HerdRoomDatabase extends RoomDatabase {
 
@@ -53,7 +54,7 @@ public abstract class HerdRoomDatabase extends RoomDatabase {
                 HerdDao dao = INSTANCE.herdDao();
                 dao.deleteAll();
 
-                Herd herd = new Herd("My First Herd");
+                DBHerd herd = new DBHerd();
 
                 dao.insert(herd);
 
