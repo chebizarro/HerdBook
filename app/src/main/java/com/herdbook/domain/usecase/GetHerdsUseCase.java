@@ -1,20 +1,24 @@
 package com.herdbook.domain.usecase;
 
 import com.herdbook.domain.model.Herd;
+import com.herdbook.domain.repository.HerdRepository;
 
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Flowable;
 
-public class GetHerdsWithAnimalsUseCase {
+public class GetHerdsUseCase {
 
     private GetAnimalsUseCase getAnimalsUseCase;
 
-    public GetHerdsWithAnimalsUseCase(GetAnimalsUseCase getAnimalsUseCase) {
+    private HerdRepository mHerdRepository;
+
+    public GetHerdsUseCase(GetAnimalsUseCase getAnimalsUseCase, HerdRepository mHerdRepository) {
         this.getAnimalsUseCase = getAnimalsUseCase;
+        this.mHerdRepository = mHerdRepository;
     }
 
     public Flowable<List<Herd>> getHerdWithAnimals() {
-        return Flowable.never();
+        return mHerdRepository.getHerds();
     }
 }
